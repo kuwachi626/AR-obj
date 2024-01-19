@@ -7,10 +7,6 @@ let camera, scene, renderer;
 let controller1, controller2;
 let raycaster;
 let group;
-let video;
-let wall;
-let flag = true;
-let text;
 
 /** 光線と交差しているオブジェクト */
 const intersected = [];
