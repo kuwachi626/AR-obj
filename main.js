@@ -96,14 +96,14 @@ const loadParts = () => {
     /** GLTFファイルローダー */
     const loader = new GLTFLoader();
     /** モデルのURL */
-    const modelsUrls = ['./glb/hide.glb', './glb/iwamoto.glb', './glb/marutonya.glb', './glb/terunosuke.glb', './glb/zundouya.glb', './glb/hideTantan.glb', './glb/hukunokami.glb', './glb/terunosukeWhite.glb']
+    const modelsUrls = ['./glb/dollA.glb', './glb/dollB.glb', './glb/dollC.glb', './glb/dollD.glb', './glb/dollE.glb', './glb/dollF.glb', './glb/dollG.glb']
     // モデルをロードして配置
     const loadModels = (url) => {
         loader.load(url, gltf => {
         const object = gltf.scene;
         object.traverse(function (child) {
             if (child.isMesh) {
-            let num = Math.random() * (5 - 1) + 1;
+            let num = Math.random() * (10 - 5) + 5;
             child.position.x = Math.random() * (2 + 2) - 2;
             child.position.y = Math.random() * (2 + 2) - 2;
             child.position.z = Math.random() * (2 + 2) - 2;
