@@ -7,6 +7,7 @@ let camera, scene, renderer;
 let controller1, controller2;
 let raycaster;
 let group;
+let maindoll;
 
 /** 光線と交差しているオブジェクト */
 const intersected = [];
@@ -95,8 +96,27 @@ const animate = () => {
 const loadParts = () => {
     /** GLTFファイルローダー */
     const loader = new GLTFLoader();
+
+    loader.load('./glb/dollA.glb', function (gltf) {
+        // モデルの読み込みが成功した際の処理
+        maindoll = gltf.scene;
+        maindoll.traverse(function (child) {
+            if (child.isMesh) {
+            child.position.y = -1;
+            child.position.z = -1;
+            child.rotation.x = 90;
+            child.scale.x = 30;
+            child.scale.y = 30;
+            child.scale.z = 30;
+            scene.add(child);
+            }
+        }, undefined, () => {});
+    }, undefined, function (error) {
+        console.error(error);
+    });
+
     /** モデルのURL */
-    const modelsUrls = ['./glb/dollA.glb', './glb/dollB.glb', './glb/dollC.glb', './glb/dollD.glb', './glb/dollE.glb', './glb/dollF.glb', './glb/dollG.glb']
+    const modelsUrls = ['./glb/dollA.glb', './glb/dollB.glb', './glb/dollC.glb', './glb/dollD.glb', './glb/dollE.glb', './glb/dollF.glb', './glb/dollG.glb', './glb/dollA.glb', './glb/dollB.glb', './glb/dollC.glb', './glb/dollD.glb', './glb/dollE.glb', './glb/dollF.glb', './glb/dollG.glb']
     // モデルをロードして配置
     const loadModels = (url) => {
         loader.load(url, gltf => {
